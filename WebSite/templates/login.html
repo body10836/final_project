@@ -5,10 +5,8 @@
     <meta charset="utf-8">
     <title>login</title>
     <meta name="descripion" content="" />
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/Style.css') }}">
-    <script>
-        alert("Page has been loaded successfully")
-    </script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/Style.css') }}">
+
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -19,13 +17,19 @@
         <h1>login</h1>
 
         <i class='bx bxs-user'></i>
-        <input type="text" placeholder=" Enter your name" required><br><br>
+        <input type="text" placeholder=" Enter your name" required class="name"><br><br>
 
         <i class='bx bxs-lock-alt'></i>
-        <input type="password" placeholder=" Enter your password" required><br><br>
+        <input type="password" placeholder=" Enter your password" required class="password"><br><br>
 
-        <input type="checkbox">Remember me
-        <button type="submit"> login </button>
+
+
+        <button type="submit" class="login"> login </button>
+        
+        <input type="checkbox" class="check">Remember me
+
+         <br>
+        <button type="button" class="guest">Guest</button>
         {% block body %}
         {% endblock %}
 
