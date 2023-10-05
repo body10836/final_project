@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head>
-
+<head>
     <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
 <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
 
@@ -71,11 +70,12 @@
         
         </script>
         <div>
-        <h3 class="center">Log in</h3>
+        <h3 class="center">Sign Up</h3>
+        <input type="text" placeholder="Username" id="userInp" class="form-control mb-3"> 
         <input type="text" placeholder="Email" id="emailInp" class="form-control mb-3"> 
         <input type="text" placeholder="Password" id="passInp" class="form-control mb-3"> 
-        <button type="button" class="btn btn-outline-dark">Log in</button>
-        <a href="{{ url_for('signup') }}" class="badge bg-dark">Create an Account?</a>
+        <button type="button" class="btn btn-outline-dark">Sign Up</button>
+        <a href="{{ url_for('login') }}" class="badge bg-dark">Have an Account?</a>
         </div>
     
 </body>
