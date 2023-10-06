@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request , redirect
+from flask import Flask, render_template, request , redirect,url_for
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
@@ -13,7 +13,9 @@ def login():
 
 
 
-@app.route("/signup")
-def signup():
-    return render_template('register.html')
+@app.route('/register' , )
+def register():
+    if request.method == "POST":
+        redirect (url_for('register'))
+        
 
