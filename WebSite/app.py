@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request , redirect,url_for
 
-app = Flask(__name__, template_folder='templates', static_folder='static')
+app = Flask(__name__)
 
 
 @app.route("/")
@@ -13,9 +13,8 @@ def login():
 
 
 
-@app.route('/register' , )
+@app.route('/register')
 def register():
-    if request.method == "POST":
-        redirect (url_for('register'))
+    return render_template('register.html')
         
 
