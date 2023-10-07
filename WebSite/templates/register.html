@@ -40,18 +40,85 @@
     import { getDatabase, ref, set, child, get } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
     import { initializeApp } from "firebase/app";
     import { getAuth } from "firebase/auth";
-    const auth = getAuth(app);
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth()
+    const database = firebase.database()
     const db = getDatabase();
+    function register() {
+      user = document.getElementById('userReg').value
+      email = document.getElementById('emailReg').value
+      password = document.getElementById('passReg').value
+      if (validate_email(email) == false || validate_password == false) {
+        return
+      }
+      if (validate_field(user) == false) {
+        return
+      }
+      auth.creteUserWithEmailAndPassword(email, password)
+        .then(function () {
+          var user = auth.currentUser
+          var database_ref = database.ref()
+
+          var user_data = {
+            email: email,
+            full_name: user,
+            last_login: Date.now()
+          }
+          database_ref.child('users/' + user.uid).set
+
+
+
+
+
+
+          alert('UserCreated !')
+
+        })
+        .catch(function (error) {
+          var error_code = error.code
+          var error_message = error.message
+          alert(error_message)
+        })
+    }
+    function validate_email(email) {
+      expressions = /^[^@]+@\w+(\.\w+)+\w$/
+      if (expressions.test(email) == true) {
+        return true
+      }
+      else {
+        return false
+      }
+
+    }
+    function validate_password() {
+      if (password < 6) {
+        return false
+      }
+      else {
+        return true
+      }
+    }
+    function validate_field(field) {
+      if (fireld == null) {
+        return false
+      }
+      if (field.length <= 0) {
+        return false
+      }
+      else {
+        return true
+      }
+    }
+
+
 
   </script>
   <div>
     <h3 class="center">Sign Up</h3>
-    <input type="text" placeholder="Username" id="userInp" class="form-control mb-3">
-    <input type="text" placeholder="Email" id="emailInp" class="form-control mb-3">
-    <input type="text" placeholder="Password" id="passInp" class="form-control mb-3">
-    <button type="button" class="btn btn-outline-dark">Sign Up</button>
+    <input type="text" placeholder="Username" id="userReg" class="form-control mb-3">
+    <input type="text" placeholder="Email" id="emailReg" class="form-control mb-3">
+    <input type="text" placeholder="Password" id="passReg" class="form-control mb-3">
+    <button type="button" class="btn btn-outline-dark" onclick="register()">Sign Up</button>
     <a href="{{ url_for('login') }}" class="badge bg-dark">Have an Account?</a>
   </div>
 
