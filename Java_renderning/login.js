@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+import { getAuth, signOut,
+  onAuthStateChanged, FacebookAuthProvider, signInWithPopup,  createUserWithEmailAndPassword,signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -42,4 +43,25 @@ signInWithEmailAndPassword(auth, email, password)
     alert("uh oh!")
   });
 })
+
+//signing in by facebook
+const facebookProvider = new FacebookAuthProvider();
+var signInWithFacebook = document.getElementById("sign_in_with_facebook")
+signInWithFacebook.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  signInWithPopup(auth, facebookProvider).then((result) => {
+      const user = result.user;
   
+      const credential = FacebookAuthProvider.credentialFromResult(result);
+      const accessToken = credential.accessToken;
+
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    const email = error.email;
+    const credential = FacebookAuthProvider.credentialFromError(error);
+      });
+
+});
